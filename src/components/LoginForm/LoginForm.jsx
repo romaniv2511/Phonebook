@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-export const SignupForm = () => {
+export const LoginForm = () => {
   const dispatch = useDispatch();
   const {
     register,
@@ -17,9 +17,6 @@ export const SignupForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        <input type="text" {...register('name')} />
-      </label>
       <label>
         <input type="email" {...register('email')} />
       </label>
