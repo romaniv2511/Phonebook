@@ -21,7 +21,7 @@ const schema = Yup.object().shape({
       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
       'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore'
     )
-    .max(16)
+    .max(25)
     .required(),
   number: Yup.string()
     .min(5)
@@ -96,7 +96,7 @@ export const ContactForm = ({
     if (type === 'edit') {
       dispatch(editContact({ id: contact.id, name, number }));
     }
-
+    console.log(errors);
     reset();
     onClose();
   };
