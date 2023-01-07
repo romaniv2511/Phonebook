@@ -5,6 +5,7 @@ import { selectContacts } from 'redux/contacts/contactsSelectors';
 import { Filter } from 'components/Filter/Filter';
 import { Contact } from '../Contact/Contact';
 import { List } from './ContactsList.styled';
+import { EditContactModal } from 'components/Modals/EditContactModal';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { Button, Flex } from '@chakra-ui/react';
 
@@ -29,15 +30,7 @@ export const ContactsList = () => {
           <Flex alignItems="center" justifyContent="space-between" key={id}>
             <Contact name={name} number={number} />
             <div>
-              <Button
-                colorScheme="teal"
-                variant="ghost"
-                // onClick={() => {
-                //   dispatch(deleteContact(id));
-                // }}
-              >
-                <EditIcon color="teal" />
-              </Button>
+              <EditContactModal contact={{ id, name, number }} />
               <Button
                 colorScheme="teal"
                 variant="ghost"

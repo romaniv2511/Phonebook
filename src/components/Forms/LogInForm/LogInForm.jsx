@@ -18,8 +18,8 @@ export const LoginForm = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = data => {
-    console.log(data);
     dispatch(logIn(data));
     reset();
   };
@@ -34,7 +34,7 @@ export const LoginForm = () => {
             {errors.name && errors.name.message}
           </FormErrorMessage>
           <FormLabel htmlFor="password">Password</FormLabel>
-          <Input id="password" type="text" {...register('password')} />
+          <Input id="password" type="password" {...register('password')} />
           <FormErrorMessage>
             {errors.name && errors.name.message}
           </FormErrorMessage>

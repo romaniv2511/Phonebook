@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './contactsOperations';
+import {
+  fetchContacts,
+  addContact,
+  editContact,
+  deleteContact,
+} from './contactsOperations';
 import { logOut } from '../auth/authOperations';
 
 const handlePending = state => {
@@ -20,26 +25,43 @@ const contactsSlice = createSlice({
   },
   extraReducers: {
     [fetchContacts.pending]: handlePending,
+    [addContact.pending]: handlePending,
+    [editContact.pending]: handlePending,
+    [deleteContact.pending]: handlePending,
+
+    [fetchContacts.rejected]: handleRejected,
+    [addContact.rejected]: handleRejected,
+    [editContact.rejected]: handleRejected,
+    [deleteContact.rejected]: handleRejected,
+
     [fetchContacts.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
       state.items = payload;
     },
-    [fetchContacts.rejected]: handleRejected,
-    [addContact.pending]: handlePending,
+
     [addContact.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
       state.items.push(payload);
     },
-    [addContact.rejected]: handleRejected,
-    [deleteContact.pending]: handlePending,
+    [editContact.fulfilled](state, { payload }) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = state.items.map(item => {
+        if (item.id === payload.id) {
+          return payload;
+        }
+        return item;
+      });
+    },
+
     [deleteContact.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
       state.items = state.items.filter(({ id }) => id !== payload);
     },
-    [deleteContact.rejected]: handleRejected,
+
     [logOut.fulfilled](state) {
       state.items = [];
       state.error = null;

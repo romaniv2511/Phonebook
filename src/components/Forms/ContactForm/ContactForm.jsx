@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { addContact } from 'redux/contacts/contactsOperations';
+import { addContact, editContact } from 'redux/contacts/contactsOperations';
 import { selectContacts } from 'redux/contacts/contactsSelectors';
 import {
   FormErrorMessage,
@@ -13,6 +13,7 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/toast';
+import { useState } from 'react';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -33,7 +34,14 @@ const schema = Yup.object().shape({
     .required(),
 });
 
-export const ContactForm = ({ onClose }) => {
+export const ContactForm = ({
+  onClose,
+  contact = { name: '', number: '' },
+  type,
+}) => {
+  const [name, setName] = useState(contact.name);
+  const [number, setNumber] = useState(contact.number);
+
   const {
     register,
     handleSubmit,
@@ -47,25 +55,48 @@ export const ContactForm = ({ onClose }) => {
   const contacts = useSelector(selectContacts);
   const toast = useToast();
 
-  const onSubmit = ({ name, number }) => {
-    const isDuplicated = contacts.some(
-      i => i.name.toLowerCase() === name.toLowerCase()
-    );
-    if (isDuplicated) {
-      toast(
-        {
-          title: `"${name}" `,
-          description: 'is already in contacts',
-          position: 'top',
-          status: 'info',
-          duration: 3000,
-          isClosable: true,
-        }
-        //
-      );
-      return;
+  const onChange = e => {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+
+      default:
+        break;
     }
-    dispatch(addContact({ name, number }));
+  };
+
+  const onSubmit = data => {
+    const { name, number } = data;
+
+    if (type === 'add') {
+      const isDuplicated = contacts.some(
+        i => i.name.toLowerCase() === name.toLowerCase()
+      );
+      if (isDuplicated) {
+        toast(
+          {
+            title: `"${name}" `,
+            description: 'is already in contacts',
+            position: 'top',
+            status: 'info',
+            duration: 3000,
+            isClosable: true,
+          }
+          //
+        );
+        return;
+      }
+      dispatch(addContact(data));
+    }
+    if (type === 'edit') {
+      dispatch(editContact({ id: contact.id, name, number }));
+    }
+
     reset();
     onClose();
   };
@@ -75,12 +106,24 @@ export const ContactForm = ({ onClose }) => {
       <FormControl isInvalid={errors.name}>
         <FormLabel htmlFor="name">
           Name
-          <Input id="name" {...register('name')} type="text" />
+          <Input
+            id="name"
+            {...register('name')}
+            type="text"
+            onChange={onChange}
+            value={name}
+          />
           <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
         </FormLabel>
         <FormLabel htmlFor="number">
           Number
-          <Input id="number" {...register('number')} type="tel" />
+          <Input
+            id="number"
+            {...register('number')}
+            type="tel"
+            onChange={onChange}
+            value={number}
+          />
           <FormErrorMessage>{errors.number?.message}</FormErrorMessage>
         </FormLabel>
         <Flex mt="40px" justifyContent="right">
