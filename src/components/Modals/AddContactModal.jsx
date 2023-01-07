@@ -17,8 +17,16 @@ export const AddContactModal = () => {
 
   return (
     <>
-      <Button onClick={onOpen} colorScheme="teal" borderRadius="50%" p="8px">
-        <AddIcon />
+      <Button
+        onClick={onOpen}
+        colorScheme="teal"
+        borderRadius="8px"
+        p="8px"
+        mt="8px"
+        mb="8px"
+      >
+        <AddIcon mr="4px" />
+        Add contact
       </Button>
 
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>

@@ -19,7 +19,6 @@ export const signUp = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/signup', user);
       token.set(data.token);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -33,7 +32,7 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/login', user);
       token.set(data.token);
-      console.log(data);
+
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

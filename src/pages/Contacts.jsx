@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
 import { AddContactModal } from 'components/Modals/AddContactModal';
 import { Container } from 'components/Container/Container';
+import { Text } from '@chakra-ui/react';
 
 export const Contacts = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,6 @@ export const Contacts = () => {
   }, [dispatch]);
   return (
     <Container>
-      <h1>Contacts</h1>
       <AddContactModal />
       <ContactsList />
     </Container>
