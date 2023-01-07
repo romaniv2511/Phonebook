@@ -13,6 +13,7 @@ export const Contacts = () => {
   }, [dispatch]);
   return (
     <Container>
+      <h1>Contacts</h1>
       <AddContactModal />
       <ContactsList />
     </Container>

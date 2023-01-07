@@ -12,6 +12,7 @@ import {
   Button,
   Flex,
 } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/toast';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -44,13 +45,24 @@ export const ContactForm = ({ onClose }) => {
 
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const toast = useToast();
 
   const onSubmit = ({ name, number }) => {
     const isDuplicated = contacts.some(
       i => i.name.toLowerCase() === name.toLowerCase()
     );
     if (isDuplicated) {
-      alert(`"${name}" is already in contacts`);
+      toast(
+        {
+          title: `"${name}" `,
+          description: 'is already in contacts',
+          position: 'top',
+          status: 'info',
+          duration: 3000,
+          isClosable: true,
+        }
+        //
+      );
       return;
     }
     dispatch(addContact({ name, number }));
