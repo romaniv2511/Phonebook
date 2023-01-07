@@ -1,12 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-
-import { Form, Label, Input, Error, FormBtn } from './Form.styled';
-import { addContact } from 'redux/operations';
-import { getContacts } from 'redux/contacts/contactsSelectors';
+import { addContact } from 'redux/contacts/contactsOperations';
+import { selectContacts } from 'redux/contacts/contactsSelectors';
+import {
+  FormErrorMessage,
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
+  Flex,
+} from '@chakra-ui/react';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -27,7 +32,7 @@ const schema = Yup.object().shape({
     .required(),
 });
 
-export const ContactsForm = () => {
+export const ContactForm = ({ onClose }) => {
   const {
     register,
     handleSubmit,
@@ -38,7 +43,7 @@ export const ContactsForm = () => {
   });
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const onSubmit = ({ name, number }) => {
     const isDuplicated = contacts.some(
@@ -50,21 +55,29 @@ export const ContactsForm = () => {
     }
     dispatch(addContact({ name, number }));
     reset();
+    onClose();
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <Label htmlFor="name">
-        Name
-        <Input id="name" {...register('name')} type="text" />
-        <Error>{errors.name?.message}</Error>
-      </Label>
-      <Label htmlFor="number">
-        Number
-        <Input id="number" {...register('number')} type="tel" />
-        <Error>{errors.number?.message}</Error>
-      </Label>
-      <FormBtn type="submit">Add contact</FormBtn>
-    </Form>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormControl isInvalid={errors.name}>
+        <FormLabel htmlFor="name">
+          Name
+          <Input id="name" {...register('name')} type="text" />
+          <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+        </FormLabel>
+        <FormLabel htmlFor="number">
+          Number
+          <Input id="number" {...register('number')} type="tel" />
+          <FormErrorMessage>{errors.number?.message}</FormErrorMessage>
+        </FormLabel>
+        <Flex mt="40px" justifyContent="right">
+          <Button type="submit" colorScheme="blue" mr={3}>
+            Save
+          </Button>
+          <Button onClick={onClose}>Cancel</Button>
+        </Flex>
+      </FormControl>
+    </form>
   );
 };

@@ -1,36 +1,56 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operations';
-import { getContacts } from 'redux/contacts/contactsSelectors';
-import { getFilter } from 'redux/filter/filterSelectors';
+import { deleteContact } from 'redux/contacts/contactsOperations';
+import { selectContacts } from 'redux/contacts/contactsSelectors';
+import { Filter } from 'components/Filter/Filter';
 import { Contact } from '../Contact/Contact';
-import { List, Item, Button } from './ContactsList.styled';
+import { List } from './ContactsList.styled';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { Button, Flex } from '@chakra-ui/react';
 
 export const ContactsList = () => {
+  const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
 
   if (!contacts.length) return;
 
-  const filtredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+  const filtredContacts = contacts.filter(
+    contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.number.includes(filter)
   );
 
   return (
-    <List>
-      {filtredContacts.map(({ id, name, number }) => (
-        <Item key={id}>
-          <Contact name={name} number={number} />
-          <Button
-            type="button"
-            onClick={() => {
-              dispatch(deleteContact(id));
-            }}
-          >
-            Delete
-          </Button>
-        </Item>
-      ))}
-    </List>
+    <>
+      <Filter setFilter={value => setFilter(value)} />
+      <List>
+        {filtredContacts.map(({ id, name, number }) => (
+          <Flex alignItems="center" justifyContent="space-between" key={id}>
+            <Contact name={name} number={number} />
+            <div>
+              <Button
+                colorScheme="teal"
+                variant="ghost"
+                // onClick={() => {
+                //   dispatch(deleteContact(id));
+                // }}
+              >
+                <EditIcon color="teal" />
+              </Button>
+              <Button
+                colorScheme="teal"
+                variant="ghost"
+                onClick={() => {
+                  dispatch(deleteContact(id));
+                }}
+              >
+                <DeleteIcon />
+              </Button>
+            </div>
+          </Flex>
+        ))}
+      </List>
+    </>
   );
 };
