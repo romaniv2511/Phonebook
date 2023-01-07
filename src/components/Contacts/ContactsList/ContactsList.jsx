@@ -6,7 +6,7 @@ import { Filter } from 'components/Filter/Filter';
 import { Contact } from '../Contact/Contact';
 import { List } from './ContactsList.styled';
 import { EditContactModal } from 'components/Modals/EditContactModal';
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { DeleteIcon } from '@chakra-ui/icons';
 import { Button, Flex } from '@chakra-ui/react';
 
 export const ContactsList = () => {
