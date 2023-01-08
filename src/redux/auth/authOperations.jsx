@@ -1,5 +1,18 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createStandaloneToast } from '@chakra-ui/toast';
+
+const { toast } = createStandaloneToast();
+
+const toastError = () =>
+  toast({
+    title: 'An error occurred.',
+    description: 'Try again.',
+    status: 'error',
+    position: 'top',
+    duration: 9000,
+    isClosable: true,
+  });
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -21,6 +34,7 @@ export const signUp = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
+      toastError();
       return rejectWithValue(error.message);
     }
   }
@@ -35,6 +49,7 @@ export const logIn = createAsyncThunk(
 
       return data;
     } catch (error) {
+      toastError();
       return rejectWithValue(error.message);
     }
   }
@@ -47,6 +62,7 @@ export const logOut = createAsyncThunk(
       token.unset();
       return data;
     } catch (error) {
+      toastError();
       return rejectWithValue(error.message);
     }
   }
@@ -65,6 +81,7 @@ export const refreshUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
+      toastError();
       return thunkAPI.rejectWithValue(error.message);
     }
   }
