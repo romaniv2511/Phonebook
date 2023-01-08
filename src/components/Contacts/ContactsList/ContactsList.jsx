@@ -7,10 +7,10 @@ import {
 } from 'redux/contacts/contactsSelectors';
 import { Filter } from 'components/Filter/Filter';
 import { Contact } from '../Contact/Contact';
-import { List } from './ContactsList.styled';
+// import { List } from './ContactsList.styled';
 import { EditContactModal } from 'components/Modals/EditContactModal';
 import { DeleteIcon } from '@chakra-ui/icons';
-import { Button, Flex } from '@chakra-ui/react';
+import { Button, Flex, List } from '@chakra-ui/react';
 
 export const ContactsList = () => {
   const [filter, setFilter] = useState('');
@@ -36,7 +36,12 @@ export const ContactsList = () => {
           const showSpinner = isLoading && currentContactId === id;
 
           return (
-            <Flex alignItems="center" justifyContent="space-between" key={id}>
+            <Flex
+              alignItems="center"
+              justifyContent="space-between"
+              key={id}
+              borderBottom="1px solid black"
+            >
               <Contact name={name} number={number} />
               <div>
                 <EditContactModal contact={{ id, name, number }} />

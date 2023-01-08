@@ -17,13 +17,7 @@ export const EditContactModal = ({ contact }) => {
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        colorScheme="teal"
-        variant="ghost"
-        borderRadius="50%"
-        p="8px"
-      >
+      <Button onClick={onOpen} colorScheme="teal" variant="ghost" p="8px">
         <EditIcon color="teal" />
       </Button>
 

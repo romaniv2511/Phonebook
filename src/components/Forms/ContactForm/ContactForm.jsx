@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 import { addContact, editContact } from 'redux/contacts/contactsOperations';
 import { selectContacts } from 'redux/contacts/contactsSelectors';
 import {
@@ -96,7 +97,6 @@ export const ContactForm = ({
     if (type === 'edit') {
       dispatch(editContact({ id: contact.id, name, number }));
     }
-    console.log(errors);
     reset();
     onClose();
   };
@@ -135,4 +135,14 @@ export const ContactForm = ({
       </FormControl>
     </form>
   );
+};
+
+ContactForm.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  contact: PropTypes.exact({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    number: PropTypes.string,
+  }),
 };
