@@ -1,13 +1,11 @@
 import { useEffect, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { SharedLayout } from './SharedLayout/SharedLayout';
-
+import { useAuth } from 'hooks/useAuth';
 import { refreshUser } from 'redux/auth/authOperations';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
-import { useAuth } from 'hooks/useAuth';
-
+import { SharedLayout } from './SharedLayout/SharedLayout';
 const Contacts = lazy(() => import('pages/Contacts'));
 const SignUp = lazy(() => import('pages/SignUp'));
 const LogIn = lazy(() => import('pages/LogIn'));
@@ -40,6 +38,7 @@ export const App = () => {
           element={<RestrictedRoute component={<LogIn />} />}
         />
       </Route>
+      <Route path="*" element={<PrivateRoute component={<Contacts />} />} />
     </Routes>
   );
 };

@@ -1,11 +1,11 @@
-import { ContactsList } from 'components/Contacts/ContactsList/ContactsList';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/contacts/contactsOperations';
-import { AddContactModal } from 'components/Modals/AddContactModal';
-import { Container } from 'components/Container/Container';
 import { Spinner } from '@chakra-ui/react';
+import { fetchContacts } from 'redux/contacts/contactsOperations';
 import { selectIsLoading } from 'redux/contacts/contactsSelectors';
+import { AddContactModal } from 'components/Modals/AddContactModal';
+import { ContactsList } from 'components/Contacts/ContactsList/ContactsList';
+import { Container } from 'components/Container/Container';
 
 const Contacts = () => {
   const dispatch = useDispatch();

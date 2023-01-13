@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logIn, signUp, logOut, refreshUser } from './authOperations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
+import { logIn, signUp, logOut, refreshUser } from './authOperations';
 
 const persistConfig = {
   key: 'auth',

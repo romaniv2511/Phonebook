@@ -1,7 +1,5 @@
-import { useForm } from 'react-hook-form';
-
 import { useDispatch } from 'react-redux';
-import { signUp } from 'redux/auth/authOperations';
+import { useForm } from 'react-hook-form';
 import {
   FormErrorMessage,
   FormLabel,
@@ -10,6 +8,7 @@ import {
   Button,
   Center,
 } from '@chakra-ui/react';
+import { signUp } from 'redux/auth/authOperations';
 
 export const SignupForm = () => {
   const dispatch = useDispatch();

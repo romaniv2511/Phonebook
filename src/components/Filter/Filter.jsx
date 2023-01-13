@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { selectContacts } from 'redux/contacts/contactsSelectors';
 import { SearchIcon } from '@chakra-ui/icons';
 import { InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
+import { selectContacts } from 'redux/contacts/contactsSelectors';
 
 export const Filter = ({ setFilter }) => {
   const contacts = useSelector(selectContacts);

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { DeleteIcon } from '@chakra-ui/icons';
+import { Button, Flex, List } from '@chakra-ui/react';
 import { deleteContact } from 'redux/contacts/contactsOperations';
 import {
   selectContacts,
@@ -7,10 +9,7 @@ import {
 } from 'redux/contacts/contactsSelectors';
 import { Filter } from 'components/Filter/Filter';
 import { Contact } from '../Contact/Contact';
-// import { List } from './ContactsList.styled';
 import { EditContactModal } from 'components/Modals/EditContactModal';
-import { DeleteIcon } from '@chakra-ui/icons';
-import { Button, Flex, List } from '@chakra-ui/react';
 
 export const ContactsList = () => {
   const [filter, setFilter] = useState('');

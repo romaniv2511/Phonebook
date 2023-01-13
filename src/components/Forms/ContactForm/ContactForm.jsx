@@ -1,10 +1,9 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import { addContact, editContact } from 'redux/contacts/contactsOperations';
-import { selectContacts } from 'redux/contacts/contactsSelectors';
 import {
   FormErrorMessage,
   FormLabel,
@@ -14,7 +13,8 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/toast';
-import { useState } from 'react';
+import { addContact, editContact } from 'redux/contacts/contactsOperations';
+import { selectContacts } from 'redux/contacts/contactsSelectors';
 
 const schema = Yup.object().shape({
   name: Yup.string()
