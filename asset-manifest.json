@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/Phonebook/static/js/main.a9f94417.js",
-    "static/js/86.9c625b8f.chunk.js": "/Phonebook/static/js/86.9c625b8f.chunk.js",
-    "static/js/1.d0b020ab.chunk.js": "/Phonebook/static/js/1.d0b020ab.chunk.js",
-    "static/js/353.6e0073a4.chunk.js": "/Phonebook/static/js/353.6e0073a4.chunk.js",
-    "static/js/687.6e8073e9.chunk.js": "/Phonebook/static/js/687.6e8073e9.chunk.js",
-    "static/js/454.5bf0cf57.chunk.js": "/Phonebook/static/js/454.5bf0cf57.chunk.js",
+    "main.js": "/Phonebook/static/js/main.c5d03933.js",
+    "static/js/86.f425dcea.chunk.js": "/Phonebook/static/js/86.f425dcea.chunk.js",
+    "static/js/1.f6d515a6.chunk.js": "/Phonebook/static/js/1.f6d515a6.chunk.js",
+    "static/js/353.b0709e29.chunk.js": "/Phonebook/static/js/353.b0709e29.chunk.js",
+    "static/js/687.6b2bcdf3.chunk.js": "/Phonebook/static/js/687.6b2bcdf3.chunk.js",
+    "static/js/270.2a2d77f1.chunk.js": "/Phonebook/static/js/270.2a2d77f1.chunk.js",
     "index.html": "/Phonebook/index.html",
-    "main.a9f94417.js.map": "/Phonebook/static/js/main.a9f94417.js.map",
-    "86.9c625b8f.chunk.js.map": "/Phonebook/static/js/86.9c625b8f.chunk.js.map",
-    "1.d0b020ab.chunk.js.map": "/Phonebook/static/js/1.d0b020ab.chunk.js.map",
-    "353.6e0073a4.chunk.js.map": "/Phonebook/static/js/353.6e0073a4.chunk.js.map",
-    "687.6e8073e9.chunk.js.map": "/Phonebook/static/js/687.6e8073e9.chunk.js.map",
-    "454.5bf0cf57.chunk.js.map": "/Phonebook/static/js/454.5bf0cf57.chunk.js.map"
+    "main.c5d03933.js.map": "/Phonebook/static/js/main.c5d03933.js.map",
+    "86.f425dcea.chunk.js.map": "/Phonebook/static/js/86.f425dcea.chunk.js.map",
+    "1.f6d515a6.chunk.js.map": "/Phonebook/static/js/1.f6d515a6.chunk.js.map",
+    "353.b0709e29.chunk.js.map": "/Phonebook/static/js/353.b0709e29.chunk.js.map",
+    "687.6b2bcdf3.chunk.js.map": "/Phonebook/static/js/687.6b2bcdf3.chunk.js.map",
+    "270.2a2d77f1.chunk.js.map": "/Phonebook/static/js/270.2a2d77f1.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.a9f94417.js"
+    "static/js/main.c5d03933.js"
   ]
 }
